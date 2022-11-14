@@ -52,8 +52,8 @@ def new_session(model_name: str) -> BaseSession:
 
     sess_opts = ort.SessionOptions()
 
-    if "OMP_NUM_THREADS" in os.environ:
-        sess_opts.inter_op_num_threads = int(os.environ["OMP_NUM_THREADS"])
+    sess_opts.inter_op_num_threads = 1
+    sess_opts.intra_op_num_threads = 1
 
     return session_class(
         model_name,
